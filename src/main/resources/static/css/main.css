@@ -1,0 +1,23 @@
+body {
+    text-align: center;
+    width: 800px;
+    margin: 30px auto;
+}
+
+.top-header {
+    margin: 0;
+}
+
+#search-area {
+    margin-top: 40px;
+    display: flex;
+    height: 40px;
+}
+
+#search-area p {
+    line-height: 10px;
+}
+
+#search-area input {
+    margin-left: 30px;
+}

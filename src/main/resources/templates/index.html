@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>시간표 자동 생성</title>
+  <meta charset="UTF-8">
+  <title>시간표 생성</title>
+  <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/main.css}">
 </head>
 <body>
-    Hello World.
+  <h1 class="top-header">시간표 생성기</h1>
+  <h2 class="top-header">Schedule Maker</h2>
+
+  <div id="search-area">
+    <p>과목 검색</p>
+    <input type="text" name="search-input" >
+  </div>
+
+  <script th:src="@{/js/main.js}"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Gyumin Kim
@@ -23,5 +24,10 @@ public class CourseService {
 	@Transactional(readOnly = true)
 	public List<Course> getAllCourses() {
 		return courseRepository.findAll();
+	}
+
+	@Transactional(readOnly = true)
+	public Set<Course> getCoursesByNameContains(String name) {
+		return courseRepository.findAllByNameContains(name);
 	}
 }
