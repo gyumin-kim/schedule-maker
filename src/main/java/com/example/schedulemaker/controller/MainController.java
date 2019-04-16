@@ -14,6 +14,6 @@ public class MainController {
 
 	@GetMapping
 	public String main() {
-		return "public/index";
+		return "index";
 	}
 }
