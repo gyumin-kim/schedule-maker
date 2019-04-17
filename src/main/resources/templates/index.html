@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>시간표 생성</title>
+  <title>시간표 생성기</title>
   <link rel="stylesheet" type="text/css" media="screen" th:href="@{/css/main.css}">
 </head>
 <body>
@@ -12,8 +12,13 @@
 
   <div id="search-area">
     <p>과목 검색</p>
-    <input type="text" name="search-input" >
+    <label>
+      <input type="text" name="search-input" >
+    </label>
   </div>
+
+  <!-- 검색 결과 -->
+  <div id="search-result"></div>
 
   <script th:src="@{/js/main.js}"></script>
 </body>
