@@ -1,28 +1,36 @@
 body {
-    text-align: center;
-    width: 800px;
-    margin: 30px auto;
+  text-align: center;
+  width: 800px;
+  margin: 30px auto;
+  background-color: aliceblue;
 }
 
 .top-header {
-    margin: 0;
+  margin: 0;
 }
 
 #search-area {
-    margin-top: 40px;
-    margin-bottom: 15px;
-    display: flex;
-    height: 40px;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  display: flex;
+  height: 40px;
 }
 
 #search-area p {
-    line-height: 10px;
+  line-height: 10px;
 }
 
 #search-area input {
-    height: 30px;
+  height: 30px;
 }
 
 #search-area input {
-    margin-left: 30px;
+  margin-left: 30px;
+}
+
+#selected-courses {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 12px 16px;
 }
