@@ -20,5 +20,9 @@ body {
 }
 
 #search-area input {
+    height: 30px;
+}
+
+#search-area input {
     margin-left: 30px;
 }
