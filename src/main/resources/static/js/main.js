@@ -1,5 +1,6 @@
 // 선택한 과목들의 목록
 let selectedCourses = [];
+
 const selectedCoursesDiv = document.querySelector('#selected-courses');
 
 const inputElem = document.getElementsByName('search-input')[0];
@@ -12,6 +13,17 @@ inputElem.addEventListener("keydown", (event) => {
     searchCourses(inputText);
   }
 });
+
+// input text가 채워진 상태에서 비워졌을 경우, 검색 결과 지우기
+inputElem.addEventListener('input', (e) => updateValue(e));
+const updateValue = (e) => {
+  if (e.target.value === '') {
+    const resultsDiv = document.getElementById('search-result');
+    while (resultsDiv.firstChild) {
+      resultsDiv.removeChild(resultsDiv.firstChild);
+    }
+  }
+};
 
 // input창 focusout될 경우 검색 결과 사라짐
 // inputElem.addEventListener('focusout', () => {
@@ -35,8 +47,6 @@ const searchCourses = async (inputText) => {
 
   // 검색 결과 보여주기
   for (let course of courses) {
-    ////// console.log(course);
-
     // result: 검색 결과 하나가 들어갈 element
     const result = document.createElement("div");
     result.setAttribute('class', 'result');
@@ -66,8 +76,11 @@ const searchCourses = async (inputText) => {
     result.addEventListener('click', () => {
       if (!selectedCourses.includes(course)) {
         updateSelectedCourses(course);
-        // selectedCourses.push(course);
       }
+      printSelectedCourses();
+
+      // TODO: 검색 결과를 하나 클릭할 때마다 시간표 계산 함수를 호출, 하단 시간표 계산 결과 view 갱신
+      updateSchedules();
     });
 
     resultsDiv.appendChild(result);
@@ -110,6 +123,12 @@ const updateSelectedCourses = (course) => {
     if (index > -1) {
       selectedCourses.splice(index, 1);
     }
+
+    printSelectedCourses();
+
+    // TODO: 담아 놓은 과목을 하나 삭제할 때마다 시간표 계산 함수를 호출, 하단 시간표 계산 결과 view 갱신
+    updateSchedules();
+
     courseDiv.parentNode.removeChild(courseDiv);
   });
   courseDiv.appendChild(xElem);
@@ -118,5 +137,8 @@ const updateSelectedCourses = (course) => {
 	selectedCoursesDiv.appendChild(courseDiv);
 };
 
-// TODO: 모든 경우의 수 계산
-// selectedCourses에 들어있는 모든 course들의 sections > periods에 근거하여
+const printSelectedCourses = () => {
+  for (let selectedCourse of selectedCourses) {
+    console.log(selectedCourse.sections);
+  }
+};
