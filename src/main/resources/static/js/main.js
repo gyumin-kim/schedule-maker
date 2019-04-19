@@ -69,10 +69,12 @@ const searchCourses = async (inputText) => {
       // if (!selectedCourses.includes(course)) {
       if (!contains(selectedCourses, course)) {
         updateSelectedCourses(course);
-      	// printSelectedCourses();
 
-				// TODO: 검색 결과를 하나 클릭할 때마다 시간표 계산 함수를 호출, 하단 시간표 계산 결과 view 갱신
-				// updateSchedules();
+				// 검색 결과를 하나 클릭할 때마다 경우의 수 다시 계산
+				const returnedCourses = updateSchedules();
+
+				// TODO: returnedCourses를 시간표 UI에 삽입하는 작업
+
       } else {
       	alert('이미 추가된 과목입니다.');
 			}
@@ -131,8 +133,8 @@ const updateSelectedCourses = (course) => {
 
     printSelectedCourses();
 
-    // TODO: 담아 놓은 과목을 하나 삭제할 때마다 시간표 계산 함수를 호출, 하단 시간표 계산 결과 view 갱신
-    // updateSchedules();
+		// 검색 결과를 하나 클릭할 때마다 경우의 수 다시 계산
+		console.log(updateSchedules());
 
     courseDiv.parentNode.removeChild(courseDiv);
   });
