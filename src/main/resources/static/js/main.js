@@ -25,14 +25,6 @@ const updateValue = (e) => {
   }
 };
 
-// input창 focusout될 경우 검색 결과 사라짐
-// inputElem.addEventListener('focusout', () => {
-//   let searchResult = document.querySelector('#search-result');
-//   while (searchResult.firstChild) {
-//     searchResult.removeChild(searchResult.firstChild);
-//   }
-// });
-
 // 해당 텍스트로 검색한 결과를 하단에 보여주기
 const searchCourses = async (inputText) => {
   const courses = await callApi(inputText);
@@ -74,13 +66,16 @@ const searchCourses = async (inputText) => {
 
     // 클릭 시 '선택한 과목 목록'에 추가
     result.addEventListener('click', () => {
-      if (!selectedCourses.includes(course)) {
+      // if (!selectedCourses.includes(course)) {
+      if (!contains(selectedCourses, course)) {
         updateSelectedCourses(course);
-      }
-      printSelectedCourses();
+      	// printSelectedCourses();
 
-      // TODO: 검색 결과를 하나 클릭할 때마다 시간표 계산 함수를 호출, 하단 시간표 계산 결과 view 갱신
-      updateSchedules();
+				// TODO: 검색 결과를 하나 클릭할 때마다 시간표 계산 함수를 호출, 하단 시간표 계산 결과 view 갱신
+				// updateSchedules();
+      } else {
+      	alert('이미 추가된 과목입니다.');
+			}
     });
 
     resultsDiv.appendChild(result);
@@ -93,11 +88,21 @@ const callApi = (inputText) => {
     .catch(err => console.error(err));
 };
 
+const contains = (selectedCourses, obj) => {
+	let i = selectedCourses.length;
+	while (i--) {
+		if (selectedCourses[i].id === obj.id)
+			return true;
+	}
+	return false;
+};
+
 // 검색 결과로 나타난 과목 선택 시, 해당 과목을 selectedCourses에 추가하고 view에 반영
 const updateSelectedCourses = (course) => {
   selectedCourses.push(course);
+	console.log(`"${course.name}" 추가 되었습니다.`);
 
-  // 한 course가 들어갈 작은 div
+	// 한 course가 들어갈 작은 div
 	const courseDiv = document.createElement('div');
 	courseDiv.style.height = '40px';
 	courseDiv.style.borderRadius = '5px';
@@ -127,7 +132,7 @@ const updateSelectedCourses = (course) => {
     printSelectedCourses();
 
     // TODO: 담아 놓은 과목을 하나 삭제할 때마다 시간표 계산 함수를 호출, 하단 시간표 계산 결과 view 갱신
-    updateSchedules();
+    // updateSchedules();
 
     courseDiv.parentNode.removeChild(courseDiv);
   });

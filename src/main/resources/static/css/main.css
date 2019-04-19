@@ -14,6 +14,7 @@ body {
   margin-bottom: 15px;
   display: flex;
   height: 40px;
+  padding-left: 140px;
 }
 
 #search-area p {
@@ -22,6 +23,8 @@ body {
 
 #search-area input {
   height: 30px;
+  width: 200px;
+  font-size: 14px;
 }
 
 #search-area input {
